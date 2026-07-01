@@ -1,0 +1,9 @@
+name = "iptv-smart-player"
+main = "worker/index.js"
+compatibility_date = "2026-07-01"
+
+[assets]
+directory = "./dist"
+binding = "ASSETS"
+not_found_handling = "single-page-application"
+run_worker_first = ["/__stream_proxy*"]

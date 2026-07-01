@@ -11,7 +11,7 @@
     "build:webos": "npm run build && node scripts/build-webos.mjs",
     "package:webos": "npm run build:webos && ares-package platforms/webos/app -o platforms/webos/out",
     "package:webos:debug": "npm run build:webos && ares-package --no-minify platforms/webos/app -o platforms/webos/out",
-    "deploy:cloudflare": "npm run build && npx wrangler deploy"
+    "deploy:cloudflare": "npm run build && npx wrangler deploy --config ./wrangler.toml"
   },
   "dependencies": {
     "hls.js": "^1.6.7",
@@ -22,6 +22,7 @@
   },
   "devDependencies": {
     "@vitejs/plugin-react": "^4.3.4",
-    "vite": "^6.0.7"
+    "vite": "^6.0.7",
+    "wrangler": "^4.106.0"
   }
 }
