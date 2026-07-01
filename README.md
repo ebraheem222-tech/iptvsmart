@@ -47,4 +47,9 @@ The generated IPK is written to:
 ```text
 platforms/webos/out
 ```
+
+## Cloudflare
+
+Cloudflare deployment uses `wrangler.toml` and `worker/index.js` for the stream proxy. See
+`CLOUDFLARE_DEPLOY.md`.
 - Platform-specific player adapters where native playback is required
