@@ -1,0 +1,16 @@
+{
+  "id": "com.iptvsmart.app.player",
+  "title": "IPTV Smart Player",
+  "main": "index.html",
+  "icon": "icon.png",
+  "largeIcon": "largeicon.png",
+  "type": "web",
+  "vendor": "IPTV Smart",
+  "version": "0.1.0",
+  "appDescription": "Free IPTV player for user subscriptions",
+  "resolution": "1920x1080",
+  "disableBackHistoryAPI": true,
+  "handlesRelaunch": false,
+  "requiredMemory": 80,
+  "supportTouchMode": "none"
+}

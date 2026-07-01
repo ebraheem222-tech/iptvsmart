@@ -1,0 +1,26 @@
+{
+  "name": "iptv-smart-player",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "start": "node node_modules/vite/bin/vite.js --host 0.0.0.0",
+    "dev": "node node_modules/vite/bin/vite.js --host 0.0.0.0",
+    "build": "node node_modules/vite/bin/vite.js build",
+    "preview": "node node_modules/vite/bin/vite.js preview --host 0.0.0.0",
+    "build:webos": "npm run build && node scripts/build-webos.mjs",
+    "package:webos": "npm run build:webos && ares-package platforms/webos/app -o platforms/webos/out",
+    "package:webos:debug": "npm run build:webos && ares-package --no-minify platforms/webos/app -o platforms/webos/out"
+  },
+  "dependencies": {
+    "hls.js": "^1.6.7",
+    "lucide-react": "^0.468.0",
+    "mpegts.js": "^1.8.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.3.4",
+    "vite": "^6.0.7"
+  }
+}
