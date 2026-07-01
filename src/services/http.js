@@ -13,9 +13,10 @@ export async function fetchJson(url, timeoutMs = DEFAULT_TIMEOUT_MS) {
 async function fetchWithTimeout(url, timeoutMs) {
   const controller = new AbortController();
   const timeout = window.setTimeout(() => controller.abort(), timeoutMs);
+  const requestUrl = getApiRequestUrl(url);
 
   try {
-    const response = await fetch(url, {
+    const response = await fetch(requestUrl, {
       signal: controller.signal,
       headers: {
         Accept: "application/json, text/plain, */*"
@@ -37,5 +38,26 @@ async function fetchWithTimeout(url, timeoutMs) {
     );
   } finally {
     window.clearTimeout(timeout);
+  }
+}
+
+function getApiRequestUrl(url) {
+  if (!shouldProxyUrl(url)) {
+    return url;
+  }
+
+  return `/__api_proxy?url=${encodeURIComponent(url)}`;
+}
+
+function shouldProxyUrl(url) {
+  if (!["http:", "https:"].includes(window.location.protocol)) {
+    return false;
+  }
+
+  try {
+    const parsed = new URL(url);
+    return parsed.origin !== window.location.origin;
+  } catch {
+    return false;
   }
 }

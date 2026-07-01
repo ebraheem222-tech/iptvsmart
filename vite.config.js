@@ -16,7 +16,13 @@ function streamProxyPlugin() {
   return {
     name: "iptv-stream-proxy",
     configureServer(server) {
-      server.middlewares.use("/__stream_proxy", async (request, response) => {
+      server.middlewares.use(async (request, response, next) => {
+        const pathname = new URL(request.url, "http://localhost").pathname;
+        if (pathname !== "/__stream_proxy" && pathname !== "/__api_proxy") {
+          next();
+          return;
+        }
+
         if (request.method === "OPTIONS") {
           writeCorsHeaders(response);
           response.statusCode = 204;

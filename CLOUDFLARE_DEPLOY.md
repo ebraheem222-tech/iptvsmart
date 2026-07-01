@@ -6,19 +6,44 @@ This project uses Cloudflare Workers + Static Assets:
 - `worker/index.js` handles `/__stream_proxy`.
 - `wrangler.toml` tells Wrangler what to deploy.
 
-## Cloudflare Build Settings
+## Option A: Cloudflare Pages
 
-Use these settings:
+Use this if your app URL is like:
+
+```text
+https://your-project.pages.dev
+```
+
+Use these settings in Pages:
 
 ```text
 Install command: npm ci
 Build command: npm run build
-Deploy command: npx wrangler deploy
 Build output directory: dist
 ```
 
-If you use Cloudflare Pages without Workers, leave the deploy command empty and set output to
-`dist`, but `/__stream_proxy` will not work.
+Leave the deploy command empty. Cloudflare Pages will build the frontend from `dist` and load
+the functions from:
+
+```text
+functions/__api_proxy.js
+functions/__stream_proxy.js
+```
+
+## Option B: Cloudflare Workers Static Assets
+
+Use this if you want to deploy with Wrangler and `wrangler.toml`:
+
+```text
+Build command: npm run deploy:cloudflare
+```
+
+This deploys:
+
+```text
+worker/index.js
+dist/
+```
 
 ## Local Commands
 

@@ -4,7 +4,7 @@ export default {
   async fetch(request, env) {
     const url = new URL(request.url);
 
-    if (url.pathname === "/__stream_proxy") {
+    if (url.pathname === "/__stream_proxy" || url.pathname === "/__api_proxy") {
       return handleStreamProxy(request);
     }
 
@@ -12,7 +12,7 @@ export default {
   }
 };
 
-async function handleStreamProxy(request) {
+export async function handleStreamProxy(request) {
   if (request.method === "OPTIONS") {
     return new Response(null, {
       status: 204,
